@@ -1,3 +1,6 @@
+#ifndef __SECRET_NUMBER_HPP__
+#define __SECRET_NUMBER_HPP__
+
 #include "openssl/evp.h"
 #include "openssl/hmac.h"
 #include <string>
@@ -21,3 +24,6 @@ class SecretNumber
         std::string GetRandomNumberAsString();
         std::vector<unsigned char> GetRandomNumber();
 };
+
+
+#endif /* __SECRET_NUMBER_HPP__ */

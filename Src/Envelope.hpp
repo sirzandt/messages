@@ -1,3 +1,6 @@
+#ifndef __ENVELOPE_HPP__
+#define __ENVELOPE_HPP__
+
 #include <string>
 #include <map>
 #include <vector>
@@ -97,3 +100,5 @@ class EnvelopeOpen
         void FinalizeMessage();
         std::string GetPlainText();
 };
+
+#endif /* __ENVELOPE_HPP__ */

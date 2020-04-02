@@ -1,20 +1,40 @@
-#include <string>
+#ifndef __MESSAGEBASE_HPP__
+#define __MESSAGEBASE_HPP__
 
-class MessageBase
+#include <string>
+#include "SecretNumber.hpp"
+#include "Envelope.hpp"
+
+/*class MessageBase
 {
     private:
         std::string mPeerId;
         std::string mMessageType;
-        std::string mSessionId;
+        SecretNumber mSecretNumber;
+        EnvelopeOpen mEnvelope;
 
     public:
-        MessageBase();
-        MessageBase(const std::string sessionId, const std::string messageType);
+        MessageBase(const std::string newMessage);
+        MessageBase(const std::string peerId, const std::string messageType);
 
-        std::string GetSessionId() { return mSessionId;}
+        std::string GetPeerId() { return mPeerId;}
         std::string GetMessageType() { return mMessageType; }
 
-        void Parse(const std::string newMessage);
-
         const std::string GetJSonString();
+};*/
+
+class SendMessage
+{
+    private:
+        std::string mJsonString;
+        void CreateJsonString(const long timeValue, const std::string peerId, const std::string peerKeyFilename, const std::string messageType);
+
+    public:
+        SendMessage(const std::string peerId, const std::string peerKeyFilename, const std::string messageType);
+        SendMessage(const long timeValue, const std::string peerId, const std::string peerKeyFilename, const std::string messageType);
+
+        const std::string GetJSonString() {return mJsonString; };
+
 };
+
+#endif /* __MESSAGEBASE_HPP__ */

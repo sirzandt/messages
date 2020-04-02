@@ -3,7 +3,7 @@
 #include "MessageBase.hpp"
 #include "json.hpp"
 
-TEST_CASE("New Message is empty", "MessageBase")
+/*TEST_CASE("New Message is empty", "MessageBase")
 {
     MessageBase testMessage;
 
@@ -56,4 +56,16 @@ TEST_CASE("Received Message is interpreted without messageType", "Messagebase")
 
     REQUIRE(testMessage.GetSessionId() == "12345");
     REQUIRE(testMessage.GetMessageType() == "");
+}
+*/
+
+TEST_CASE("SendMessage", "MessageBase")
+{
+    OPENSSL_init();
+
+    SendMessage sendMessage(1, "Peer1", "../Test/resources/my_public_key.pem", "MessageType");
+
+    std::string jsonMessageToSend = sendMessage.GetJSonString();
+    
+    REQUIRE(jsonMessageToSend == "");
 }
