@@ -72,7 +72,7 @@ void SendMessage::CreateJsonString(const long timeValue, const std::string peerI
     EnvelopeSeal envelopeSeal(peerKeyFilename);
 
     j["MessageType"] = messageType;
-    j["peerId"] = peerId;
+    j["PeerId"] = peerId;
 
     nlohmann::json secretToSendNumber(secretNumber.GetRandomNumberAsString());
     nlohmann::json secretToSendHint(secretNumber.GetRandomNumber());

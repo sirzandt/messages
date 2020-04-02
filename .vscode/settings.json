@@ -3,5 +3,6 @@
     "cmake.configureOnOpen": false,
     "files.watcherExclude": {
         "**/ExternalLib/boost_*/**": true
-    }
+    },
+    "C_Cpp.default.cppStandard": "c++17"
 }

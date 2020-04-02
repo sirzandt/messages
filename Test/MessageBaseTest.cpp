@@ -59,13 +59,32 @@ TEST_CASE("Received Message is interpreted without messageType", "Messagebase")
 }
 */
 
-TEST_CASE("SendMessage", "MessageBase")
+TEST_CASE("SendMessage contains a json message with all fields", "MessageBase")
 {
     OPENSSL_init();
 
     SendMessage sendMessage(1, "Peer1", "../Test/resources/my_public_key.pem", "MessageType");
 
     std::string jsonMessageToSend = sendMessage.GetJSonString();
+
+    nlohmann::json parsedJson = nlohmann::json::parse(jsonMessageToSend);
+    REQUIRE(parsedJson["PeerId"] == "Peer1");
+    REQUIRE(parsedJson["MessageType"] == "MessageType");
+    REQUIRE(parsedJson.contains("EMessage"));
+    nlohmann::json eMessage = parsedJson["EMessage"];
+    REQUIRE(eMessage.contains("P1"));
+    REQUIRE(eMessage.contains("P2"));
+}
+
+TEST_CASE("SendMessage contains a json message that can be decoded", "MessageBase")
+{
+    OPENSSL_init();
+
+    SendMessage sendMessage(1, "Peer1", "../Test/resources/my_public_key.pem", "MessageType");
+
+    std::string jsonMessageToSend = sendMessage.GetJSonString();
+
+    nlohmann::json parsedJson = nlohmann::json::parse(jsonMessageToSend);
+
     
-    REQUIRE(jsonMessageToSend == "");
 }

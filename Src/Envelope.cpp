@@ -78,7 +78,9 @@ void EnvelopeSeal::FinalizeMessage()
     EVP_SealUpdate(mpCtx, pCipherBuffer, &cipherLength, reinterpret_cast<const unsigned char *>(mPlainText.c_str()), mPlainText.size());
     // note: cipherLength now contains the new length (no padding yet)
 
-    EVP_SealFinal(mpCtx, pCipherBuffer + cipherLength, &cipherLength);
+    int finalLength;
+    EVP_SealFinal(mpCtx, pCipherBuffer + cipherLength, &finalLength);
+    cipherLength += finalLength;
     // note: cipherLength now contains the final length (Including padding)
 
     // Construct final message
