@@ -3,8 +3,9 @@
 class MessageBase
 {
     private:
-        std::string mSessionId;
+        std::string mPeerId;
         std::string mMessageType;
+        std::string mSessionId;
 
     public:
         MessageBase();

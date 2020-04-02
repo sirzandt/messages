@@ -1,4 +1,7 @@
 {
     "C_Cpp.default.configurationProvider": "vector-of-bool.cmake-tools",
-    "cmake.configureOnOpen": false
+    "cmake.configureOnOpen": false,
+    "files.watcherExclude": {
+        "**/ExternalLib/boost_*/**": true
+    }
 }

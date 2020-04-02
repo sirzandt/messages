@@ -117,4 +117,3 @@ TEST_CASE("Generate keys for an seal envelope", "Envelope")
     auto result = testEnvelope2.GetPlainText();
     REQUIRE(result == testMessage);
 }
-
