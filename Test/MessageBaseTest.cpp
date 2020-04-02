@@ -2,6 +2,7 @@
 #include "catch.hpp"
 #include "MessageBase.hpp"
 #include "json.hpp"
+#include "Envelope.hpp"
 
 /*TEST_CASE("New Message is empty", "MessageBase")
 {
@@ -74,6 +75,7 @@ TEST_CASE("SendMessage contains a json message with all fields", "MessageBase")
     nlohmann::json eMessage = parsedJson["EMessage"];
     REQUIRE(eMessage.contains("P1"));
     REQUIRE(eMessage.contains("P2"));
+    REQUIRE(eMessage.contains("P3"));
 }
 
 TEST_CASE("SendMessage contains a json message that can be decoded", "MessageBase")
@@ -86,5 +88,10 @@ TEST_CASE("SendMessage contains a json message that can be decoded", "MessageBas
 
     nlohmann::json parsedJson = nlohmann::json::parse(jsonMessageToSend);
 
-    
+    std::string encryptedKey = parsedJson["EMessage"][EnvelopeSeal::MapKeyEncryptedKey];
+    std::string iv = parsedJson["EMessage"][EnvelopeSeal::MapKeyVi];
+    std::string encryptedMessage = parsedJson["EMessage"][EnvelopeSeal::MapKeyCipher];
+    EnvelopeOpen envelopeOpen("../Test/resources/my_private_key.pem", encryptedKey, iv);
+
+    //std::string decryptedMessage = envelopeOpen.
 }
